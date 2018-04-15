@@ -2,17 +2,9 @@ package com.example.yennywright.happybirthdaytoyou;
 
 public class DateSet {
     private String birthMonth;
-    private String birthDay;
+    private int birthDay;
 
-    public void setBirthMonth(String inMonth){
-        birthMonth = inMonth;
-    }
-
-    public void setBirthDay(String inDay){
-        birthDay = inDay;
-    }
-
-    public DateSet (String inMonth, String inDay){
+    public DateSet (String inMonth, int inDay){
         birthMonth = inMonth;
         birthDay = inDay;
     }

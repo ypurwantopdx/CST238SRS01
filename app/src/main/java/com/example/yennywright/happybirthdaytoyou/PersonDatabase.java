@@ -4,14 +4,6 @@ public class PersonDatabase {
     private String userName;
     private DateSet userBirthday;
 
-    public void setUserName(String inName){
-        userName = inName;
-    }
-
-    public void setUserMonth(DateSet inDate){
-        userBirthday = inDate;
-    }
-
     public String getUserName(){
         return userName;
     }

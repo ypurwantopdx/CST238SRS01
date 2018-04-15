@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     List<PersonDatabase> personDatabaseList;
     Validator validator;
     int EntryCount = 0;
-    //public static String EXTRA_MESSAGE = "com.example.yennywright.happybirthdaytoyou.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         //initializing views
         EditText nameText = findViewById(R.id.edittext_name_input);
-        String nameTextStr = nameText.getText().toString();
         nameText.addTextChangedListener(validator.nameTextWatcher);
+        String nameTextStr = nameText.getText().toString();
 
         EditText monthText = findViewById(R.id.edittext_month_input);
         monthText.addTextChangedListener(validator.monthTextWatcher);
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitInfo(nameTextStr, monthTextStr, dayTextStr);
+                submitInfo(nameTextStr, monthTextStr, Integer.parseInt(dayTextStr));
             }
         });
 
@@ -53,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void submitInfo(String nameTextStr, String monthTextStr, String dayTextStr) {
+    public void submitInfo(String nameTextStr, String monthTextStr, int dayTextStr) {
 
-        //save data to persistent storage
+        validator.DateSetValidator(monthTextStr, dayTextStr);
         final DateSet newDate = new DateSet(monthTextStr, dayTextStr);
         PersonDatabase person = new PersonDatabase(nameTextStr, newDate);
+
+        //adding data to persistent storage
         personDatabaseList.add(person);
         EntryCount++;
 

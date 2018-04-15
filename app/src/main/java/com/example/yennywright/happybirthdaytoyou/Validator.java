@@ -88,94 +88,93 @@ public class Validator {
         }
     };
 
-
     //Date sets validator
-    public boolean DateSetValidator(String inMonth, String inDay) {
-        if (inDay == null) {
+    public boolean DateSetValidator(String inMonth, int inDay) {
+        if (inDay == 0) {
             Toast.makeText(context.getApplicationContext(), "Day field is empty",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (inMonth.toLowerCase().equals("january")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("february")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 28) {
+            if (inDay < 1 || inDay > 28) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("march")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("april")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 30) {
+            if (inDay< 1 || inDay > 30) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("may")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("june")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 30) {
+            if (inDay < 1 || inDay > 30) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("july")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("august")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("september")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 30) {
+            if (inDay < 1 || inDay > 30) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("october")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("november")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 30) {
+            if (inDay < 1 || inDay > 30) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         if (inMonth.toLowerCase().equals("december")) {
-            if (Integer.parseInt(inDay) < 1 || Integer.parseInt(inDay) > 31) {
+            if (inDay < 1 || inDay > 31) {
                 Toast.makeText(context.getApplicationContext(), "Day is out of range.",
                         Toast.LENGTH_SHORT).show();
                 return false;
