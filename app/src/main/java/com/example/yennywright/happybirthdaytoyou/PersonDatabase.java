@@ -2,26 +2,26 @@ package com.example.yennywright.happybirthdaytoyou;
 
 public class PersonDatabase {
     private String userName;
-    private DateSet userBirthdate;
+    private DateSet userBirthday;
 
     public void setUserName(String inName){
         userName = inName;
     }
 
     public void setUserMonth(DateSet inDate){
-        userBirthdate = inDate;
+        userBirthday = inDate;
     }
 
     public String getUserName(){
         return userName;
     }
 
-    public DateSet getUserBirthdate() {
-        return userBirthdate;
+    public DateSet getUserBirthday() {
+        return userBirthday;
     }
 
     public PersonDatabase (String inName, DateSet inDate){
         userName = inName;
-        userBirthdate = inDate;
+        userBirthday = inDate;
     }
 }
