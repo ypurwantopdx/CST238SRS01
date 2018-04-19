@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">HappyBirthdayToYou</string>
-    <string name="monthHint">Exp. January</string>
-    <string name="nameHint">Exp. John Steward</string>
-    <string name="dayHint">Exp. 9</string>
+    <string name="monthHint">ex. January</string>
+    <string name="nameHint">ex. John Stewart</string>
+    <string name="dayHint">ex. 9</string>
     <string name="textview_name_label">Name:</string>
     <string name="textview_month_label">Month:</string>
     <string name="textview_day_label">Day:</string>
