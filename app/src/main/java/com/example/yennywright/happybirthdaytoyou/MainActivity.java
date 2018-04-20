@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button submitButton;
     Button resetButton;
     TextView outputFinalMessageBox;
+    TextView countBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         //if DATESET has equal value
         if (personDatabaseList.contains(newDate)) {
             //TODO: print out the two names with the same birth date
+
             outputFinalMessageBox.setText("Print out names here.");
         }
 
@@ -138,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetStorage(View view) {
         personDatabaseList.clear();
-        EntryCount = 0;
+        EntryCount = personDatabaseList.size();
 
-        TextView clearCount = findViewById(R.id.count_display);
-        clearCount.setText(EntryCount);
-        TextView clearMessage = findViewById(R.id.message_text);
-        clearMessage.setText("Storage has been emptied.");
+        countBox = findViewById(R.id.count_display);
+        countBox.setText(EntryCount);
+        outputFinalMessageBox = findViewById(R.id.message_text);
+        outputFinalMessageBox.setText("Storage has been emptied.");
     }
 
     public boolean isAlphanumeric(String str)
