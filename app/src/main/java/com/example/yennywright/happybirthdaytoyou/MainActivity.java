@@ -7,24 +7,18 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<PersonDatabase> personDatabaseList;
-    List<String> allMonthFullWord = Arrays.asList("january", "february", "march", "april", "may",
-                    "june", "july", "august", "september", "october", "november", "december");
-    List<String> allMonthAbr = Arrays.asList("jan", "feb", "mar", "apr", "may",
-                                            "jun", "jul", "aug", "sept", "oct", "nov", "dec");
-    List<String> allMonthInNumber = Arrays.asList("1", "2", "3", "4", "5",
-                                                        "6", "7", "8", "9", "10", "11", "12");
-    List<String> shortMonth = Arrays.asList("february");
-    List<String> mediumMonth = Arrays.asList("april", "june", "september", "november");
-    List<String> longMonth = Arrays.asList("january", "march", "may", "july", "august",
-            "october", "december");
+    List<Person> personList;
+    List<String> months = Arrays.asList("january", "february", "march", "april", "may",
+                    "june", "july", "august", "september", "october", "november", "december",
+            "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec",
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+
     TextView outFinalMessageBox;
     TextView countDisplayBox;
     int EntryCount = 0;
@@ -46,73 +40,93 @@ public class MainActivity extends AppCompatActivity {
         outFinalMessageBox = findViewById(R.id.textview_output_mssg);
         countDisplayBox = findViewById(R.id.textview_count_display);
 
+        //NAME field
         nameText = findViewById(R.id.edittext_name_input);
         nameText.addTextChangedListener(new TextValidator(nameText) {
             @Override
             public void validate(TextView textView, String text) {
-                nameValidator(text);
-                finalName = nameText.getText().toString();
+                String userName = nameText.getText().toString();
+                if(nameValidator(userName)){
+                    finalName = userName;
+                }
             }
         });
 
+        //MONTH field
         monthText = findViewById(R.id.edittext_month_input);
         monthText.addTextChangedListener(new TextValidator(monthText) {
             @Override
             public void validate(TextView textView, String text) {
-                monthValidator(text);
-                finalMonth = nameText.getText().toString();
-
+                String userMonth = monthText.getText().toString();
+                if(monthValidator(userMonth)){
+                    finalMonth = userMonth;
+                }
             }
         });
 
+        //DAY field
         dayText = findViewById(R.id.edittext_day_input);
         dayText.addTextChangedListener(new TextValidator(dayText) {
             @Override
             public void validate(TextView textView, String text) {
-                dayValidator(text);
                 String finalDayStr = dayText.getText().toString();
-                finalDay = Integer.parseInt(finalDayStr);
+                if(dayValidator(finalDayStr)){
+                    finalDay = Integer.parseInt(finalDayStr);
+                }
             }
         });
 
         //initializing buttons
+        //SUBMIT button
         submitButton = findViewById(R.id.button_submittion);
-        setOnClick(submitButton, finalName, finalMonth, finalDay);
+        submitButton.setOnClickListener(new OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                if(finalName == null){
+                    nameText.setError("Please enter your name.");
+                }
+                if(finalMonth == null){
+                    monthText.setError("Please enter month.");
+                }
+                if(finalDay == null){
+                    dayText.setError("Please enter day.");
+                }
+
+                if (dateIsValid(finalMonth, finalDay)) {
+                    DateSet newDate = new DateSet(finalMonth, finalDay);
+                    Person newPerson = new Person(finalName, newDate);
+
+                    //adding data to persistent storage
+                    personList.add(newPerson);
+                    EntryCount = personList.size();
+                    countDisplayBox.setText(EntryCount);
+
+                    //compare dateset to find similar dates then display the names
+                    for(Person p: personList) {
+                        if (p.getUserBirthday().equals(newDate)) {
+
+                            String displayResult = p.getUserName() + newPerson.getUserName();
+                            outFinalMessageBox.setText("Happy Birthday: " + displayResult);
+                        }
+                    }
+                }
+            }
+        });
+
+        //RESET button
         resetButton = findViewById(R.id.button_resetstorage);
         resetButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetStorage(view);
+                resetStorage();
             }
         });
     }
 
-    private void setOnClick(Button inButton, String inName, String inMonth, int inDay)
-    {
-        inButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dateIsValidator(inName, inDay)) {
-                    DateSet newDate = new DateSet(inMonth, inDay);
-                    PersonDatabase person = new PersonDatabase(inName, newDate);
-
-                    //adding data to persistent storage
-                    personDatabaseList.add(person);
-                    EntryCount++;
-
-                    //TODO: compare dateset to find similar dates then display the names
-
-                    countDisplayBox = findViewById(R.id.textview_count_display);
-                    countDisplayBox.setText(personDatabaseList.size());
-                }
-            }
-        });
-    }
-
-    public void resetStorage(View view) {
-        personDatabaseList.clear();
-        EntryCount = personDatabaseList.size();
+    public void resetStorage() {
+        personList.clear();
+        EntryCount = personList.size();
 
         countDisplayBox.setText(EntryCount);
         outFinalMessageBox.setText("Storage is empty.");
@@ -128,50 +142,103 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void nameValidator(String inName)
+    public boolean nameValidator(String inName)
     {
         if(!isAlphanumeric(inName)) {
             nameText.setError("Accept Alphanumeric only.");
+            return false;
         }
+        return true;
     }
 
-    public void monthValidator(String inMonth)
+    public boolean monthValidator(String inMonth)
     {
-        if(allMonthInNumber.contains(inMonth) == false && allMonthAbr.contains(inMonth) == false
-                && allMonthFullWord.contains(inMonth) == false){
+        if(months.contains(inMonth.toLowerCase()) == false){
             monthText.setError("Input is invalid.");
+            return false;
         }
+        return true;
     }
 
-    public void dayValidator(String inDay)
+    public boolean dayValidator(String inDay)
     {
-        if(isAlphanumeric(inDay)) {
+        if(!isNumeric(inDay)) {
             dayText.setError("Accept integer only.");
+            return false;
         }
+        return true;
+    }
+
+    public static boolean isNumeric(String inDay)
+    {
+        return inDay.matches("-?\\d+(.\\d+)?");
     }
 
 
-    public boolean dateIsValidator(String inMonth, int inDay)
+    public boolean dateIsValid(String inMonth, int inDay)
     {
         boolean valid = false;
-        if(shortMonth.contains(inMonth)){
-            if(inDay < 1 && inDay > 29){
+        String inMonthLowCase = inMonth.toLowerCase();
+        if(inMonthLowCase.matches("january")|| inMonthLowCase.matches("jan")||inMonth == "1"){
+            if(inDay >= 1 && inDay <= 31){
                 valid = true;
             }
         }
-        else if(mediumMonth.contains(inMonth)){
-            if(inDay < 1 && inDay > 30){
+        else if(inMonthLowCase.matches("february")||inMonthLowCase.matches("feb")||inMonth == "2"){
+            if(inDay >= 1 && inDay <= 29){
                 valid = true;
             }
         }
-        else if(longMonth.contains(inMonth)){
-            if(inDay < 1 && inDay > 31){
+        else if(inMonthLowCase.matches("march")||inMonthLowCase.matches("mar")||inMonth == "3"){
+            if(inDay >= 1 && inDay <= 31){
                 valid = true;
             }
         }
-
+        else if(inMonthLowCase.matches("april")||inMonthLowCase.matches("apr")||inMonth == "4"){
+            if(inDay >= 1 && inDay <= 30){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("may")||inMonth == "5"){
+            if(inDay >= 1 && inDay <= 31){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("june")||inMonthLowCase.matches("jun")||inMonth == "6"){
+            if(inDay >= 1 && inDay <= 30){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("july")||inMonthLowCase.matches("jul")||inMonth == "7"){
+            if(inDay >= 1 && inDay <= 31){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("august")||inMonthLowCase.matches("aug")||inMonth == "8"){
+            if(inDay >= 1 && inDay <= 31){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("september")||inMonthLowCase.matches("sept")||inMonth == "9"){
+            if(inDay >= 1 && inDay <= 30){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("october")||inMonthLowCase.matches("oct")||inMonth == "10"){
+            if(inDay >= 1 && inDay <= 31){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("november")||inMonthLowCase.matches("nov")||inMonth == "11"){
+            if(inDay >= 1 && inDay <= 30){
+                valid = true;
+            }
+        }
+        else if(inMonthLowCase.matches("december")||inMonthLowCase.matches("dec")||inMonth == "12"){
+            if(inDay >= 1 && inDay <= 31){
+                valid = true;
+            }
+        }
         return valid;
     }
-
-
 }
