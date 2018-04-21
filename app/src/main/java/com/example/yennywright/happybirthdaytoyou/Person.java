@@ -12,8 +12,10 @@ public class Person {
         return userBirthday;
     }
 
+    //constructor
     public Person (String inName, DateSet inDate){
         userName = inName;
         userBirthday = inDate;
     }
+
 }
