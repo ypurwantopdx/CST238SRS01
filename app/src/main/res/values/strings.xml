@@ -1,139 +1,17 @@
 <resources>
     <string name="app_name">HappyBirthdayToYou</string>
-    <string name="nameHint">exp.John Stewart</string>
-    <string name="name_label">Name:</string>
-    <string name="month_label">Month:</string>
-    <string name="day_label">Day:</string>
-    <string name="button_submit">Submit</string>
-    <string name="button_reset">Reset</string>
-    <string name="count_label">Number of entry:</string>
-    <string name="message_label">Message</string>
+    <string name="monthHint">ex. January</string>
+    <string name="nameHint">ex. John Stewart</string>
+    <string name="dayHint">ex. 9</string>
+    <string name="textview_name_label">Name:</string>
+    <string name="textview_month_label">Month:</string>
+    <string name="textview_day_label">Day:</string>
+    <string name="button_submittion">Submit</string>
+    <string name="button_resetstorage">Reset</string>
+    <string name="textview_count_label">Number of entry:</string>
+    <string name="textview_message_label">Message</string>
     <string name="input_name_label">Enter your name</string>
     <string name="input_month_label">Enter birth month</string>
     <string name="input_day_label">Enter birth day</string>
-    <string name="count_display">Empty</string>
-
-    <string-array name="month_array">
-        <item>Choose month</item>
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
-
-    <string-array name="dayDefault_array">
-        <item>Choose day</item>
-        <item>Month is not chosen yet</item>
-    </string-array>
-
-    <string-array name="day29_array">
-        <item>Choose day</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
-    </string-array>
-
-    <string-array name="day30_array">
-        <item>Choose day</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
-        <item>30</item>
-    </string-array>
-
-    <string-array name="day31_array">
-        <item>Choose day</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>28</item>
-        <item>29</item>
-        <item>30</item>
-        <item>31</item>
-    </string-array>
-
+    <string name="textview_count_display">Empty</string>
 </resources>

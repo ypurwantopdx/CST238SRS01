@@ -1,6 +1,6 @@
 package com.example.yennywright.happybirthdaytoyou;
 
-public class PersonDatabase {
+public class Person {
     private String userName;
     private DateSet userBirthday;
 
@@ -12,8 +12,10 @@ public class PersonDatabase {
         return userBirthday;
     }
 
-    public PersonDatabase (String inName, DateSet inDate){
+    //constructor
+    public Person (String inName, DateSet inDate){
         userName = inName;
         userBirthday = inDate;
     }
+
 }
